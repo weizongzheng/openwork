@@ -1,0 +1,160 @@
+body{
+    overflow: hidden;
+}
+*{
+    margin:0;
+    padding:0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.hidden{
+    display: none;
+}
+.wrapper{
+    display: flex;
+}
+.ant_side{
+    min-width: 250px;
+    background:#001529 ;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+}
+#iframe{
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 250px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.logo{
+    height:100px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+    line-height: 100px;
+}
+.logo a{
+    color: white;
+}
+.ant_side li{
+    padding:10px 0;
+}
+.ant_side li a{
+    display: block;
+    margin:0 20px 0 40px;
+    color:#ccc;
+    font-size: 14px;
+}
+.ant_side li>ul a{
+    margin-left:60px;
+}
+.ant_side li>ul ul a{
+    margin-left:80px;
+}
+.ant_side a:hover{
+    color:#fff;
+}
+.ant_side .pull_down{
+    float:right;
+}
+.ant_layout{
+    width:100%;
+}
+.layout_header{
+    height:100px;
+    background: yellow;
+    top: 0;
+}
+.layout_content{
+    margin:20px;
+}
+.layout_content>div:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.row1>div{
+    width:23%;
+    min-width: 200px;
+    height:300px;
+    margin:0 1% 2% 1%;
+    background: red;
+    float:left;
+}
+.row2,.row4{
+    width:98%;
+    margin:0 1% 0 1%;
+    height:600px;
+    background: blue;
+    min-width: 600px;
+}
+.row3>div{
+    width:48%;
+    min-width: 600px;
+    height:300px;
+    margin:2% 1% 2% 1%;
+    background: red;
+    float:left;
+}
+.layout_footer{
+    height:200px;
+    background: greenyellow;
+}
+@media screen and (max-width:1500px){
+    .row1>div{
+        width:48%;
+        margin:2% 1% 2% 1%;
+    }
+    .row3>div{
+        width:98%;
+        margin:2% 1% 2% 1%;
+    }
+}
+@media screen and (max-width:1200px){
+    .logo a,.ant_side>ul>li>a>span{
+        display: none;
+    }
+    .ant_side li>ul{
+        display: none;
+        border-radius: 5px;
+        position:absolute;
+        background:#001529 ;
+    }
+    .ant_side li:hover>ul{
+        display: block;
+        width:250px;
+    }
+    .ant_side>ul>li>ul{
+        top:100px;
+        left:100px;
+    }
+    .ant_side>ul>li>ul ul{
+        left:250px;
+        top:100px;
+    }
+    .ant_side{
+        min-width:100px;
+    }
+}
+@media screen and (max-width:800px){
+    .ant_side{
+        display: none;
+    }
+    .ant_layout{
+        margin:0;
+    }
+}
+@media screen and (max-width:450px){
+    .row1>div{
+        width:98%;
+        margin:2% 1% 2% 1%;
+    }
+}
