@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <import resource="classpath:spring-dao.xml"/>
+
+    <!--扫描service的包-->
+    <context:component-scan base-package="com.service"></context:component-scan>
+    <bean id="LoginService" class="com.service.LoginService">
+        <property name="logindao" ref="loginDao"></property>
+    </bean>
+    <bean id="UserService" class="com.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+    <bean id="FriendService" class="com.service.FriendService">
+        <property name="friendDao" ref="friendDao"></property>
+    </bean>
+    <bean id="IntoClassService" class="com.service.IntoClassService">
+        <property name="intoClassDao" ref="intoClassDao"></property>
+    </bean>
+    <bean id="CourseService" class="com.service.CourseService">
+        <property name="CourseDao" ref="courseDao"></property>
+    </bean>
+    <bean id="ColumService" class="com.service.ColumService">
+        <property name="ColumDao" ref="columDao"></property>
+    </bean>
+    <bean id="FriendMessageService" class="com.service.FriendMessageService">
+        <property name="FriendMessageDao" ref="friendMessageDao"></property>
+    </bean>
+    <bean id="CourseMessageService" class="com.service.CourseMessageService">
+        <property name="CourseMessageDao" ref="courseMessageDao"></property>
+    </bean>
+    <bean id="OrgMessageService" class="com.service.OrgMessageService">
+        <property name="OrgMessageDao" ref="orgMessageDao"></property>
+    </bean>
+    <bean id="OrgService" class="com.service.OrgService">
+        <property name="OrgDao" ref="orgDao"></property>
+    </bean>
+    <bean id="IntoOrgService" class="com.service.IntoOrgService">
+        <property name="IntoOrgDao" ref="intoOrgDao"></property>
+    </bean>
+    <bean id="CourseWorkService" class="com.service.CourseWorkService">
+        <property name="courseWorkDao" ref="courseWorkDao"></property>
+    </bean>
+    <bean id="IntoWorkService" class="com.service.IntoWorkService">
+        <property name="IntoWorkDao" ref="intoWorkDao"></property>
+    </bean>
+    <bean id="profilePicturesService" class="com.service.profilePicturesService">
+        <property name="profilePicturesDao" ref="profilePicturesDao"></property>
+    </bean>
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dateSource" />
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--那些方法配置事务-->
+        <!--配置事务的传播特性 propagation-->
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置事务切入-->
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.dao.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"></aop:advisor>
+    </aop:config>
+</beans>

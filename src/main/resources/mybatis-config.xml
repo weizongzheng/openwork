@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <typeAliases>
+        <package name="com.pojo"/>
+    </typeAliases>
+
+<!--Spring配置数据源-->
+    <mappers>
+        <mapper resource="com/dao/LoginMapper.xml"></mapper>
+        <mapper resource="com/dao/UserMapper.xml"></mapper>
+        <mapper resource="com/dao/FriendMapper.xml"></mapper>
+        <mapper resource="com/dao/IntoClassMapper.xml"></mapper>
+        <mapper resource="com/dao/CourseMapper.xml"></mapper>
+        <mapper resource="com/dao/ColumMapper.xml"></mapper>
+        <mapper resource="com/dao/CourseMessageMapper.xml"></mapper>
+        <mapper resource="com/dao/FriendMessageMapper.xml"></mapper>
+        <mapper resource="com/dao/OrgMessageMapper.xml"></mapper>
+        <mapper resource="com/dao/OrgMapper.xml"></mapper>
+        <mapper resource="com/dao/IntoOrgMapper.xml"></mapper>
+        <mapper resource="com/dao/CourseWorkMapper.xml"></mapper>
+        <mapper resource="com/dao/IntoWorkMapper.xml"></mapper>
+        <mapper resource="com/dao/profilePicturesMapper.xml"></mapper>
+    </mappers>
+
+</configuration>

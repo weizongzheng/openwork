@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CourseWorkDao">
+<select id="getCourseAllWork" resultType="com.pojo.CourseWork">
+    select *from course_work where course_id=#{course_id}
+</select>
+    <insert id="createCourseWork">
+        insert into course_work values(#{course_id},#{work_id},#{work_name},#{work_content},#{file})
+    </insert>
+    <select id="exsistWork" resultType="_int">
+        select count(*) from course_work where course_id=#{course_id}
+    </select>
+    <select id="getCourseMaxWork_id" resultType="_int">
+        select max(work_id)from course_work where course_id=#{course_id}
+    </select>
+    <select id="getWork" resultType="com.pojo.CourseWork">
+        select *from course_work where course_id=#{course_id} and work_id=#{work_id}
+    </select>
+    <update id="updateCourseWorkName">
+        update course_work set work_name=#{work_name} where course_id=#{course_id} and work_id=#{work_id}
+    </update>
+    <update id="updateCourseWorkContent">
+      update course_work set work_content=#{work_content} where course_id=#{course_id} and work_id=#{work_id}
+    </update>
+    <update id="updateFile">
+         update course_work set file=#{file} where course_id=#{course_id} and work_id=#{work_id}
+    </update>
+    <delete id="deleteWork">
+        delete from course_work where course_id=#{course_id} and work_id=#{work_id}
+    </delete>
+    <delete id="deleteCourseAllWork">
+         delete from course_work where course_id=#{course_id}
+    </delete>
+</mapper>

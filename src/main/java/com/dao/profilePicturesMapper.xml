@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.profilePicturesDao">
+  <insert id="createPicture">
+      insert into profile_pictures values(#{username},#{file})
+  </insert>
+    <select id="getPicture" resultType="string">
+        select file from profile_pictures where username=#{username}
+    </select>
+    <select id="isCreatePicture" resultType="_int">
+        select count(*) from profile_pictures where username=#{username}
+    </select>
+    <update id="updatePicture">
+        update profile_pictures set file=#{file} where username=#{username}
+    </update>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CourseMessageDao">
+    <select id="countNumber" resultType="_int">
+        select count(*) from course_message where username=#{username} and readed=#{readed}
+    </select>
+    <select id="getCourseMeList" resultType="com.pojo.CourseMessage">
+        select *from  course_message where username=#{username} and readed=#{readed} order by create_time
+    </select>
+    <update id="readIt" >
+        update course_message set readed=1 where username=#{username} and m_username=#{m_username} and create_time=#{creat}
+    </update>
+    <select id="getCourseMessage" resultType="com.pojo.CourseMessage">
+        select *from course_message where username=#{username} and readed=#{readed} and create_time=#{create}
+         and course_id=#{course_id}
+    </select>
+    <update id="readCourseMessage">
+        update course_message set readed=1 where username=#{username} and course_id=#{course_id} and create_time=#{creat}
+    </update>
+    <delete id="deleteCourseMessage">
+       delete from course_message where username=#{username} and course_id=#{course_id} and create_time=#{creat}
+    </delete>
+    <insert id="createCourseMessage">
+        insert into course_message values(#{course_id},#{username},#{create_time},#{readed},#{content})
+    </insert>
+    <delete id="deleteCourseAllMessage">
+        delete from course_message where course_id=#{course_id}
+    </delete>
+</mapper>
