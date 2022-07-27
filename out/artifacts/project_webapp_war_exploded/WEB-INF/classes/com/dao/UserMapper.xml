@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+    <insert id="createUser">
+        insert into user (name,username,number,school,create_time,sex,class)values(#{name},#{username},#{number},#{school},#{create_time},#{sex},#{classes})
+    </insert>
+    <select id="getUsername" resultType="string">
+        select name from user where username=#{username}
+    </select>
+    <resultMap id="user" type="com.pojo.User">
+        <result property="classes" column="class"/>
+    </resultMap>
+    <select id="getUser" resultMap="user">
+        select *from user where username=#{username}
+    </select>
+    <update id="updateUser">
+        update user set name=#{name},number=#{number},school=#{school},class=#{classes} where username=#{username}
+    </update>
+    <select id="isexsist" resultType="_int">
+        select count(*) from user where username=#{username}
+    </select>
+</mapper>

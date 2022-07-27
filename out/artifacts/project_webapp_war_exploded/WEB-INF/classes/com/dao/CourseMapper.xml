@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CourseDao">
+    <select id="createCourseNumber" resultType="_int">
+        select count(*) from course where create_user=#{username}
+    </select>
+    <select id="gettitle" resultType="string">
+        select title from course where course_id=#{course_id}
+    </select>
+    <select id="getCreateUsername" resultType="string">
+        select create_user from course where course_id=#{course_id}
+    </select>
+    <select id="getCourse" resultType="com.pojo.Course">
+        select *from course where course_id=#{course_id}
+    </select>
+    <update id="exitCourse">
+        update course set into_number=into_number-1 where course_id=#{courseid}
+    </update>
+    <select id="CourseIsExists" resultType="_int">
+        select count(*) from course where course_id=#{courseid}
+    </select>
+    <insert id="createCourse">
+        insert into course values(#{course_id},#{create_time},#{create_user},#{title},#{into_number},#{filed},
+        #{description})
+    </insert>
+    <select id="getUserAllCourse" resultType="com.pojo.Course">
+        select *from course where create_user=#{username}
+    </select>
+    <update id="updateName">
+        update course set title=#{name} where course_id=#{course_id}
+    </update>
+    <update id="updateContent">
+         update course set description=#{content} where course_id=#{course_id}
+    </update>
+    <delete id="deleteCourse">
+        delete from course where course_id=#{course_id}
+    </delete>
+</mapper>
